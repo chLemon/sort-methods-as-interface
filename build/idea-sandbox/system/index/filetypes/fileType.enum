@@ -1,12 +1,13 @@
-IDEA_MODULE
-JAVA
+DTD
 XML
-HTML
+JAVA
 RNG Compact
+GitIgnore file
 PATCH
+HTML
+IDEA_MODULE
 textmate
 PLAIN_TEXT
-DTD
 JSON
 Shell Script
 XHTML
@@ -19,7 +20,6 @@ SPI
 Properties
 CSS
 JavaScript
-GitIgnore file
 gdsl
 Kotlin
 script-definition-marker
