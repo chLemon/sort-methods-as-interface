@@ -1,13 +1,37 @@
 <application>
   <component name="ActionsLocalSummary">
+    <e n="$Undo">
+      <i c="2" l="1640335641180" />
+    </e>
+    <e n="CollapseAllRegions">
+      <i c="1" l="1640335622224" />
+    </e>
+    <e n="EditorBackSpace">
+      <i c="10" l="1640335878042" />
+    </e>
+    <e n="EditorCut">
+      <i c="2" l="1640335677800" />
+    </e>
+    <e n="EditorEnter">
+      <i c="3" l="1640335879931" />
+    </e>
+    <e n="EditorEscape">
+      <i c="1" l="1640335609518" />
+    </e>
+    <e n="EditorPaste">
+      <i c="4" l="1640335879154" />
+    </e>
+    <e n="Find">
+      <i c="1" l="1640335600811" />
+    </e>
     <e n="WelcomeScreen.CreateNewProject">
       <i c="1" l="1637477478779" />
     </e>
     <e n="com.intellij.diagnostic.IdeMessagePanel$4">
-      <i c="1" l="1637477574109" />
+      <i c="2" l="1640334004692" />
     </e>
     <e n="com.intellij.ide.ReopenProjectAction">
-      <i c="1" l="1637478854424" />
+      <i c="3" l="1640335568168" />
     </e>
     <e n="com.intellij.openapi.fileEditor.impl.tabActions.CloseTab">
       <i c="1" l="1637478867656" />

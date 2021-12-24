@@ -105,20 +105,26 @@ public class SortMethodsAsInterfaceAction extends TextComponentEditorAction {
 			List<String> interfaceLines = extractLines(interfaceDoc, 0, interfaceDoc.getLineCount() - 1);
 
 			List<String> interfaceSortedMethods = new ArrayList<>();
-			// 写一个方法名的正则：       
+			// 写一个方法名的正则：    ^\s*\S+\s+\S+\(.*\);$   
 			//     若干个开始空格  返回值 一个空格以上的空格  方法名  括号  参数类型 空格 参数名 括号 分号
 			// 注意该正则会匹配到空行，要加个判断
 			String pattern = "^\\s*\\S+\\s+\\S+\\(.*\\);$";
+			// 经过测试，还需要一个正则：
+			// 若干个开始空格  返回值类型可能是Map<> 后面不变
+			// ^\s*\S+<.>\s+\S+\(.*\);$
+			String pattern2 = "^\\s*\\S+<.*>\\s+\\S+\\(.*\\);$";
 			for (int i = 0; i < interfaceLines.size(); i++) {
 				String line = interfaceLines.get(i);
 				if (!line.equals("\n")) {
 					String noN = line.replace("\n", "");
-					if (noN.matches(pattern)) {
+					if (noN.matches(pattern) || noN.matches(pattern2)) {
 						// 这行非空行，并且满足方法名的正则，那么就是一个抽象方法
 						// 去掉方法内的空格，去掉末尾的分号，存起来
 						String noSpaceLine = line.replace(" ", "");
 						String lineSingle = noSpaceLine.replace(";", "");
 						interfaceSortedMethods.add(lineSingle.replace("\n", ""));
+					} else {
+						System.out.println(noN);
 					}
 				}
 			}
@@ -151,6 +157,8 @@ public class SortMethodsAsInterfaceAction extends TextComponentEditorAction {
 					String methodLine = implLines.get(i + k);
 					String astr = methodLine.replace("public", "");
 					String bstr = astr.replace(" ", "");
+					// todo 新bug，方法声明到这里可能还没有结束，比如说  public void test(Integer a1,\n
+					// todo 然后后面才出现第一个 { 这样下面这些就都错了
 					String methodLineSingle = bstr.replace("{", "");
 
 					thisMethod.add(methodLine);
@@ -179,6 +187,9 @@ public class SortMethodsAsInterfaceAction extends TextComponentEditorAction {
 				}
 			}
 
+			// todo 这个地方很容易出问题。 
+			// todo 问题，现在要求接口和实现类的参数名必须一一
+			// todo 问题，注释没处理
 			// 方法排序
 			List<String> sorted = new ArrayList<>();
 			for (String method : interfaceSortedMethods) {
